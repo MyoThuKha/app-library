@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import React from "react";
+import React, { useState } from "react";
 
 interface contentProps {}
 
@@ -9,6 +9,12 @@ const iconVariant = {
   },
 };
 const Content: React.FC<contentProps> = ({}) => {
+  const links: string[] = [
+    "https://github.com/MyoThuKha/calculator/releases",
+    "https://github.com/MyoThuKha/Simple-Note-App/releases",
+  ];
+  const maxIndex = links.length - 1;
+  const [curr, setCurr] = useState(0);
   return (
     <div className="flex items-center justify-around w-screen h-screen relative">
       <motion.svg
@@ -20,6 +26,12 @@ const Content: React.FC<contentProps> = ({}) => {
         strokeWidth={0.8}
         stroke="currentColor"
         className=" w-16 h-16"
+        onClick={() =>
+          setCurr(() => {
+            if (curr === 0) return maxIndex;
+            return curr - 1;
+          })
+        }
       >
         <path
           strokeLinecap="round"
@@ -44,6 +56,12 @@ const Content: React.FC<contentProps> = ({}) => {
         strokeWidth={0.8}
         stroke="currentColor"
         className=" w-16 h-16"
+        onClick={() =>
+          setCurr(() => {
+            if (curr === maxIndex) return 0;
+            return curr + 1;
+          })
+        }
       >
         <path
           strokeLinecap="round"
@@ -55,7 +73,7 @@ const Content: React.FC<contentProps> = ({}) => {
         variants={iconVariant}
         whileHover="hover"
         className="absolute bottom-20 border bg-blue-300 text-white rounded-full px-4 py-3"
-        href="https://github.com/MyoThuKha/calculator/releases"
+        href={links[curr]}
         target="_blank"
         rel="noreferrer"
       >
