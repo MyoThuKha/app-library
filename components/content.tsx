@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import React, { useState } from "react";
+import dataList from "../data/data";
 
 interface contentProps {}
 
@@ -9,11 +10,7 @@ const iconVariant = {
   },
 };
 const Content: React.FC<contentProps> = ({}) => {
-  const links: string[] = [
-    "https://github.com/MyoThuKha/calculator/releases",
-    "https://github.com/MyoThuKha/Simple-Note-App/releases",
-  ];
-  const maxIndex = links.length - 1;
+  const maxIndex = dataList.length - 1;
   const [curr, setCurr] = useState(0);
   return (
     <div className="flex items-center justify-around w-screen h-screen relative">
@@ -71,7 +68,7 @@ const Content: React.FC<contentProps> = ({}) => {
       </motion.svg>
 
       <div className="text-center h-1/3 w-1/3 border-2 border-black rounded-3xl px-8 py-4">
-        <h2 className="text-4xl py-4 font-bold">Calculator app</h2>
+        <h2 className="text-4xl py-4 font-bold">{dataList[curr].title}</h2>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur,
           laboriosam.
@@ -103,7 +100,7 @@ const Content: React.FC<contentProps> = ({}) => {
         variants={iconVariant}
         whileHover="hover"
         className="btn-outline"
-        href={links[curr]}
+        href={dataList[curr].uri}
         target="_blank"
         rel="noreferrer"
       >
