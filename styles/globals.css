@@ -4,5 +4,9 @@
 
 @font-face {
   font-family: "display";
-  src: url();
+  src: url("../fonts/display.otf");
+}
+
+body {
+  font-family: display;
 }

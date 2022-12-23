@@ -23,20 +23,24 @@ const Home: NextPage = () => {
         <div className="grid grid-cols-3 h-screen">
           <div className="col-span-2">
             {/* title and intro */}
-            <section className="h-2/3 bg-blue-300">
-              <div className="h-2/3 text-8xl capitalize">Flutter Projects</div>
-              <div>hello</div>
+            <section className="h-2/3 border-black border-b">
+              <div className="h-2/3 text-8xl uppercase flex items-center">
+                Flutter
+              </div>
+              <div className="border-black border-t flex">hello</div>
             </section>
 
             {/* others projects */}
             <section className="h-1/3 grid grid-cols-2">
-              <div className="col-span-1">cat1</div>
-              <div className="col-span-1">cat2</div>
+              <div className="col-span-1 border-black border-r">categ1</div>
+              <div className="col-span-1">categ2</div>
             </section>
           </div>
 
           {/* Current Project */}
-          <div className="col-span-1">world</div>
+          <div className="col-span-1 border-black border-l">
+            <div></div>
+          </div>
         </div>
       </div>
     </div>
