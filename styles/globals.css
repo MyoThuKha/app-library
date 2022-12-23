@@ -2,9 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.btn {
-  @apply absolute flex items-center bottom-20 border bg-blue-300 text-white rounded-full pl-4 pr-3 py-3;
-}
-.btn-outline {
-  @apply absolute flex items-center bottom-20 border rounded-full pl-4 pr-3 py-3;
+@font-face {
+  font-family: "display";
+  src: url();
 }
