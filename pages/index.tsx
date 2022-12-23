@@ -1,14 +1,20 @@
+import { AnimatePresence, motion } from "framer-motion";
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useState } from "react";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 import Content from "../components/content";
-import Hello from "../components/hello";
 
 const Home: NextPage = () => {
-  const [isDark, setIsDark] = useState(true);
+  const [isDark, setIsDark] = useState(false);
+  const [greet, setGreet] = useState(true);
   const changeTheme = () => {
     setIsDark(() => !isDark);
   };
+
+  useEffect(() => {
+    setTimeout(() => setGreet(false), 2000);
+  }, []);
 
   const colorTheme = isDark ? " bg-black text-white" : " bg-white text-black";
   return (
@@ -19,14 +25,46 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div
-        className={"flex min-h-screen justify-center items-center" + colorTheme}
+        className={
+          "flex w-screen h-screen justify-around items-center overflow-hidden" +
+          colorTheme
+        }
       >
-        <Content
-          dynamicColor={colorTheme}
-          theme={isDark}
-          changeTheme={changeTheme}
-        />
-        {/* <Hello /> */}
+        <AnimatePresence>
+          {greet && (
+            <motion.h1
+              exit={{ x: "-100vw", opacity: 0 }}
+              transition={{ duration: 1, when: "beforeChildren" }}
+              className="text-8xl"
+            >
+              Projects
+            </motion.h1>
+          )}
+        </AnimatePresence>
+        <AnimatePresence>
+          {greet && (
+            <motion.div
+              exit={{ x: "100vw", opacity: 0 }}
+              transition={{ duration: 1, when: "beforeChildren" }}
+            >
+              <Image
+                src="/window.svg"
+                alt="main image"
+                width="400"
+                height="400"
+                priority
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {!greet && (
+          <Content
+            dynamicColor={colorTheme}
+            theme={isDark}
+            changeTheme={changeTheme}
+          />
+        )}
       </div>
     </div>
   );

@@ -18,9 +18,16 @@ const Content: React.FC<contentProps> = ({ theme: isDark, changeTheme }) => {
   const [curr, setCurr] = useState(0);
   const borderColor = isDark ? " border-white" : " border-black";
   return (
-    <div className="flex items-center justify-around w-screen h-screen relative">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 1 }}
+      className="flex items-center justify-around w-screen h-screen relative"
+    >
       <div className="absolute top-4 right-8">
-        <svg
+        <motion.svg
+          variants={iconVariant}
+          whileHover="hover"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
@@ -38,7 +45,7 @@ const Content: React.FC<contentProps> = ({ theme: isDark, changeTheme }) => {
                 : "M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
             }
           />
-        </svg>
+        </motion.svg>
       </div>
       <motion.svg
         variants={iconVariant}
@@ -122,7 +129,7 @@ const Content: React.FC<contentProps> = ({ theme: isDark, changeTheme }) => {
           </svg>
         </div>
       </motion.a>
-    </div>
+    </motion.div>
   );
 };
 export default Content;
