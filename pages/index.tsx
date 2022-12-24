@@ -89,7 +89,15 @@ const Home: NextPage = () => {
           {/* Current Project */}
           <div className="col-span-1 p-4 border-black border-l">
             <h2 className="text-4xl uppercase">{data[0].title}</h2>
-            <div className="p-2">{data[0].about}</div>
+            <div className="p-2">{data[0].details}</div>
+            <div className="p-2">In This project, I used</div>
+            <ul className="">
+              {data[0].tools.map((each) => (
+                <li key={data[0].tools.indexOf(each)} className="capitalize">
+                  - {each}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
