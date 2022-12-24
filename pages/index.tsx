@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import dataList from "../data/data";
+import CustomButton from "../components/button";
 
 const Home: NextPage = () => {
   const [isDark, setIsDark] = useState(false);
@@ -47,28 +48,40 @@ const Home: NextPage = () => {
         <div className="grid grid-cols-3 h-screen">
           <div className="col-span-2">
             {/* title and intro */}
-            <section
-              className="h-2/3 border-black border-b"
-              onClick={() => changeLang()}
-            >
-              <div className="h-2/3 text-8xl uppercase flex items-center">
+            <section className="h-2/3 border-black border-b">
+              <div
+                className="h-2/3 text-8xl uppercase flex items-center cursor-pointer"
+                onClick={() => changeLang()}
+              >
                 {category}
               </div>
-              <div className="border-black border-t flex">hello</div>
+              <div className="border-black border-t flex items-center h-1/3">
+                <p className="w-1/3 pl-4">
+                  Hello, my name is Myo Thu Kha. And I love coding apps that
+                  have beautiful UI. Here are the list of projects that I have
+                  been created.
+                </p>
+              </div>
             </section>
 
             {/* others projects */}
             <section className="h-1/3 grid grid-cols-2">
               <div
                 onClick={() => changeProject(1)}
-                className="col-span-1 border-black border-r"
+                className="col-span-1 border-black border-r relative px-2"
               >
-                <h2 className="uppercase">{data[1].title}</h2>
+                <h2 className="uppercase text-2xl py-4">{data[1].title}</h2>
                 <div>{data[1].about}</div>
+                <CustomButton />
               </div>
-              <div onClick={() => changeProject(2)} className="col-span-1">
-                <h2 className="uppercase">{data[2].title}</h2>
+              <div
+                className="col-span-1 relative px-2"
+                onClick={() => changeProject(2)}
+              >
+                <h2 className="uppercase text-2xl py-4">{data[2].title}</h2>
                 <div>{data[2].about}</div>
+                {/* button */}
+                <CustomButton />
               </div>
             </section>
           </div>

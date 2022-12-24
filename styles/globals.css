@@ -10,3 +10,7 @@
 body {
   font-family: display;
 }
+
+.btn {
+  @apply bg-black rounded-full text-white inline-block px-4 py-2;
+}
