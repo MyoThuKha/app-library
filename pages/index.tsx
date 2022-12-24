@@ -1,9 +1,7 @@
-import { AnimatePresence, motion } from "framer-motion";
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
 import { useEffect, useState } from "react";
-import Content from "../components/content";
+import dataList from "../data/data";
 
 const Home: NextPage = () => {
   const [isDark, setIsDark] = useState(false);
@@ -12,6 +10,32 @@ const Home: NextPage = () => {
   };
 
   const colorTheme = isDark ? " bg-black text-white" : " bg-white text-black";
+
+  const [category, setCategory] = useState("flutter");
+  const [data, setData] = useState(dataList.flutter);
+
+  const changeProject = (chooseIndex: number): void => {
+    const chooseItem = data[chooseIndex];
+    //APPROACH 2
+    const newList = data.filter((each) => each !== chooseItem);
+    if (chooseIndex === 2) newList.reverse();
+    newList.unshift(chooseItem);
+    setData(newList);
+  };
+
+  const changeLang = (): void => {
+    const list = ["flutter", "reactNative", "next"];
+    let index = list.indexOf(category) + 1;
+    if (index === list.length) index = 0;
+    setCategory(list[index]);
+    setData(dataList[category]);
+  };
+
+  useEffect(() => {
+    setData(dataList[category]);
+    console.log("useeffect ran");
+  }, [category]);
+
   return (
     <div>
       <Head>
@@ -23,23 +47,36 @@ const Home: NextPage = () => {
         <div className="grid grid-cols-3 h-screen">
           <div className="col-span-2">
             {/* title and intro */}
-            <section className="h-2/3 border-black border-b">
+            <section
+              className="h-2/3 border-black border-b"
+              onClick={() => changeLang()}
+            >
               <div className="h-2/3 text-8xl uppercase flex items-center">
-                Flutter
+                {category}
               </div>
               <div className="border-black border-t flex">hello</div>
             </section>
 
             {/* others projects */}
             <section className="h-1/3 grid grid-cols-2">
-              <div className="col-span-1 border-black border-r">categ1</div>
-              <div className="col-span-1">categ2</div>
+              <div
+                onClick={() => changeProject(1)}
+                className="col-span-1 border-black border-r"
+              >
+                <h2 className="uppercase">{data[1].title}</h2>
+                <div>{data[1].about}</div>
+              </div>
+              <div onClick={() => changeProject(2)} className="col-span-1">
+                <h2 className="uppercase">{data[2].title}</h2>
+                <div>{data[2].about}</div>
+              </div>
             </section>
           </div>
 
           {/* Current Project */}
-          <div className="col-span-1 border-black border-l">
-            <div></div>
+          <div className="col-span-1 p-4 border-black border-l">
+            <h2 className="text-4xl uppercase">{data[0].title}</h2>
+            <div className="p-2">{data[0].about}</div>
           </div>
         </div>
       </div>

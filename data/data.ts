@@ -1,24 +1,67 @@
-const dataList = [
-  {
-    title: "Calculator app",
-    description: "React Native Project",
-    uri: "https://github.com/MyoThuKha/calculator/releases",
-  },
-  {
-    title: "Note App",
-    description: "",
-    uri: "https://github.com/MyoThuKha/Simple-Note-App/releases",
-  },
-  {
-    title: "Weather Website",
-    description: "Check the weather of the city",
-    uri: "https://weather-myothukha.vercel.app",
-  },
-  {
-    title: "Coffee Website",
-    description: "Discover the various species of cafe",
-    uri: "https://cafe-myothukha.vercel.app",
-  },
-];
+interface item {
+  title: string;
+  about: string;
+  tools: string;
+}
+
+interface dataListProp {
+  [key: string]: item[];
+  flutter: item[];
+  next: item[];
+  reactNative: item[];
+}
+const dataList: dataListProp = {
+  flutter: [
+    {
+      title: "weather app",
+      about: "Created with flutter and openweathermap api",
+      tools: "",
+    },
+    {
+      title: "note app",
+      about: "Using Sqlite database with flutter coding.",
+      tools: "",
+    },
+    {
+      title: "habit tracker",
+      about: "Simple habit tracker with heatmap",
+      tools: "",
+    },
+  ],
+  next: [
+    {
+      title: "weather forecast",
+      about: "Created with nextjs and openweathermap api",
+      tools: "",
+    },
+    {
+      title: "food recipes",
+      about: "combined spoonacular api with nextjs",
+      tools: "",
+    },
+    {
+      title: "cafe",
+      about: "display the variety of cafe",
+      tools: "",
+    },
+  ],
+  reactNative: [
+    {
+      title: "to do app",
+      about: "",
+      tools: "",
+    },
+    {
+      title: "note app",
+      about: "",
+      tools: "",
+    },
+    {
+      title: "calculator",
+      about: "simple calculator with redux",
+      tools: "",
+    },
+  ],
+};
 
 export default dataList;
